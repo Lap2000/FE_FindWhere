@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:project_flutter/Screens/data/productevaluate_data.dart';
 import 'package:project_flutter/Screens/models/item.dart';
+import 'package:project_flutter/Screens/models/product_model.dart';
 import 'package:project_flutter/Screens/product_detail/components/bottom.dart';
 import 'package:project_flutter/Screens/product_detail/components/prod_title_price_stars.dart';
 
 
 class CommentProduct extends StatelessWidget {
 
-  final Model product;
+  final ProductModel product;
   final String id;
 
   const CommentProduct({

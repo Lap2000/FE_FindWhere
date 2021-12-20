@@ -1,20 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project_flutter/Screens/home_screen/home_screen.dart';
+import 'package:project_flutter/Screens/models/product_model.dart';
 import 'package:project_flutter/Screens/product_detail/Evaluate/enterprise_Evaluate.dart';
 import 'package:project_flutter/Screens/product_detail/Evaluate/product_Evaluate.dart';
+import 'package:project_flutter/Screens/product_detail/GoogleMap/Map.dart';
 import 'package:project_flutter/components/BottomGuest.dart';
 
 class ProdDetBottom extends StatelessWidget {
   final String id;
   final double price;
+  final ProductModel _Product;
 
   const ProdDetBottom({
     Key? key,
     required this.price,
     required this.id,
-  }) : super(key: key);
-
+    required ProductModel Product}) :_Product = Product,super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,25 +37,10 @@ class ProdDetBottom extends StatelessWidget {
             icon: Icon(Icons.map_outlined),
             color: Colors.black,
             onPressed: () {
-              ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
-              ScaffoldMessenger.of(context).showMaterialBanner(
-                MaterialBanner(
-                  content: const Text('Chức năng này chưa hoàn thiện !'),
-                  actions: [
-                    TextButton(
-                      child: const Text(
-                        'OK',
-                        style: TextStyle(
-                          color: Colors.green,
-                        ),
-                      ),
-                      onPressed: () {
-                        ScaffoldMessenger.of(context)
-                            .hideCurrentMaterialBanner();
-                      },
-                    ),
-                  ],
-                ),
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MapScreen()),
               );
             },
           ),
@@ -65,7 +52,7 @@ class ProdDetBottom extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ProductEvaluateScreen(id: id,)),
+                    builder: (context) => ProductEvaluateScreen(id: id, Product: _Product,)),
               );
             },
             child: Container(
@@ -120,3 +107,26 @@ class ProdDetBottom extends StatelessWidget {
     );
   }
 }
+
+
+/*onPressed: () {
+ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+ScaffoldMessenger.of(context).showMaterialBanner(
+MaterialBanner(
+content: const Text('Chức năng này chưa hoàn thiện !'),
+actions: [
+TextButton(
+child: const Text(
+'OK',
+style: TextStyle(
+color: Colors.green,
+),
+),
+onPressed: () {
+ScaffoldMessenger.of(context)
+    .hideCurrentMaterialBanner();
+},
+),
+],
+),
+);*/

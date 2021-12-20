@@ -8,7 +8,7 @@ import 'package:project_flutter/Screens/product_detail/components/prod_title_pri
 
 class CommentEnterprise extends StatelessWidget {
 
-  final Model product;
+  final Products product;
   final String id;
 
   const CommentEnterprise({

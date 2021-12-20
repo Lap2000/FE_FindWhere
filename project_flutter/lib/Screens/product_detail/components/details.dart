@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:project_flutter/Screens/data/dummy_data.dart';
 import 'package:project_flutter/Screens/models/item.dart';
+import 'package:project_flutter/Screens/models/product_model.dart';
 import 'package:project_flutter/Screens/product_detail/components/prod_title_price_stars.dart';
 
 import 'avaliable_colors.dart';
 import 'bottom.dart';
 
 class AboutProduct extends StatelessWidget {
-  final Model product;
+  final ProductModel product;
   final String id;
 
   const AboutProduct({
@@ -38,17 +40,20 @@ class AboutProduct extends StatelessWidget {
         children: [
           ProdTitleStars(
             title: product.name,
-            rate: product.rate,
+            rate: product.star!,
+            price: product.price!,
+            types: product.Types,
+            id_enterprise: product.E_id,
           ),
           //const SizedBox(height: 10),
           //ProdAvaliableColors(colors: product.avaliableColors),
-          const SizedBox(height: 10),
+          //const SizedBox(height: 10),
          // Text(
             //product.description,
             //style: const TextStyle(color: Colors.grey),
           //),
           const Spacer(),
-          ProdDetBottom(price: product.price,id: id,),
+          ProdDetBottom(price: product.price!,id: id, Product: product,),
         ],
       ),
     );

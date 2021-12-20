@@ -34,33 +34,33 @@ class _HomeScreenState extends State<HomeScreen> {
               buttonTitle: 'Show All',
               onPress: () {},
             ),
-            HomeListView(
-              items: dummyList.where((element) => element.rate >= 4.5).toList(),
-            ),
+            // HomeListView(
+            //   items: dummyList.where((element) => element.rate >= 4.5).toList(),
+            // ),
             // ! CHAIRS
             const SliverToBoxAdapter(child: SizedBox(height: 30)),
             Category(title: 'Chairs', buttonTitle: 'See more', onPress: () { print('See more pressed');},),
-            HomeListView(
-              items: dummyList
-                  .where((element) => element.type == ItemType.chair)
-                  .toList(),
-            ),
+            // HomeListView(
+            //   items: dummyList
+            //       .where((element) => element.type == ItemType.chair)
+            //       .toList(),
+            // ),
             // ! BEDS
             const SliverToBoxAdapter(child: SizedBox(height: 30)),
             Category(title: 'Beds', buttonTitle: 'See more', onPress: () {},),
-            HomeListView(
-              items: dummyList
-                  .where((element) => element.type == ItemType.bed)
-                  .toList(),
-            ),
+            // HomeListView(
+            //   items: dummyList
+            //       .where((element) => element.type == ItemType.bed)
+            //       .toList(),
+            // ),
             // ! TABLES
             const SliverToBoxAdapter(child: SizedBox(height: 30)),
             Category(title: 'Tables', buttonTitle: 'See more', onPress: () {},),
-            HomeListView(
-              items: dummyList
-                  .where((element) => element.type == ItemType.table)
-                  .toList(),
-            ),
+            // HomeListView(
+            //   items: dummyList
+            //       .where((element) => element.type == ItemType.table)
+            //       .toList(),
+            // ),
             const SliverToBoxAdapter(child: SizedBox(height: 30)),
           ],
         ),

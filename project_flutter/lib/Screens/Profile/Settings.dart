@@ -16,19 +16,19 @@ import 'package:project_flutter/Screens/register_screen.dart';
 import 'package:project_flutter/components/BottomGuest.dart';
 import 'package:project_flutter/components/bottomLoggedin.dart';
 import 'package:project_flutter/utilities/constant.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'changepassword.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
 
-
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-
+  //Build Setting Page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,6 +87,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  //Redirect to EditProfilePage
   onPressHander()  {
     Navigator.push(
       context,
@@ -95,7 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-
+  //Gesture Build AccountPage
   GestureDetector buildAccountOption(BuildContext context, String title, Icon icon) {
     return GestureDetector(
       onTap: () {
@@ -130,6 +131,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  //Gesture Build HistoryPage
   GestureDetector buildHistoryPage(BuildContext context, String title, Icon icon) {
     return GestureDetector(
       onTap: () {},
@@ -163,7 +165,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-
+  //Gesture Build ChangePasswordPage
   GestureDetector buildChangePwd(BuildContext context, String title, Icon icon) {
     return GestureDetector(
       onTap: () {
@@ -198,6 +200,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  //Function Logout
   void Logout() {
     //final state = Provider.of<User>(context, listen: false);
     //state.username = controller.text;
@@ -237,6 +240,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+  //Gesture Build Logout
   GestureDetector buildLogout(BuildContext context, String title, Icon icon) {
     return GestureDetector(
       onTap: () {
@@ -265,6 +269,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+
+  //Gesture Build HelpPage
   GestureDetector buildHelpPage(BuildContext context, String title, Icon icon) {
     return GestureDetector(
       onTap: () {
@@ -299,34 +305,119 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
+
+  //Dialog OK? Cancle
   Future<bool> onWillPop() async {
     final shouldPop = await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('ĐĂNG XUẤT?'),
-        titleTextStyle: TextStyle(
-          fontSize: 24,
-          color: Colors.redAccent,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+            side: BorderSide(
+                width: 5,
+                color: Colors.greenAccent
+            )
         ),
-        content: Text('Bạn có chắc chăn muốn đăng xuất không?'),
-        actions: <Widget>[
-          FlatButton(
+        title: Center(child: Text(
+          'Thông báo !',
+          style: TextStyle(
             color: Colors.red,
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text('Không'),
+            fontSize: 22.0,
+            fontFamily: 'helvetica_neue_light',
           ),
-          FlatButton(
-            color: Colors.green,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => BottomNavigationBarGuest()),
-              );
-            },
-            child: Text('Có'),
-          ),
-        ],
+          textAlign: TextAlign.center,
+        ),),
+        content: new Container(
+          width: 100.0,
+          height: 120.0,
+          // decoration: new BoxDecoration(
+          //   shape: BoxShape.rectangle,
+          //   color: const Color(0xFFFFFF),
+          //   borderRadius: new BorderRadius.all(new Radius.circular(35.0)),
+          //   ),
+          child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              new Expanded(
+                child: new Row(
+                  children: <Widget>[
+                    new Container(
+                      child: new Text(
+                        'Bạn muốn đăng xuất ?',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18.0,
+                          fontFamily: 'helvetica_neue_light',
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              new Expanded(
+              child:
+                new Row(
+                children: <Widget>[
+                  new InkWell(
+                    onTap: () {
+                      Navigator.of(context).pop(false);
+                      },
+                    child: new Container(
+                      width: 100,
+                      padding: new EdgeInsets.all(14.0),
+                      decoration: new BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: new BorderRadius.all(new Radius.circular(35.0)),
+                      ),
+                      child: new Text(
+                        'Cancle',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                          fontFamily: 'helvetica_neue_light',
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 30.0,
+                  ),
+                  new InkWell(
+                    onTap: () async {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.clear();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BottomNavigationBarGuest()),
+                      );
+                    },
+                    child: new Container(
+                      width: 100,
+                      padding: new EdgeInsets.all(14.0),
+                      decoration: new BoxDecoration(
+                        color: const Color(0xFF33b17c),
+                        borderRadius: new BorderRadius.all(new Radius.circular(35.0)),
+                      ),
+                      child: new Text(
+                        'OK',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                          fontFamily: 'helvetica_neue_light',
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],),
+              ),
+            ],),
+        ),
       ),
     );
     return shouldPop ?? false;

@@ -6,12 +6,18 @@ import 'package:flutter/foundation.dart';
 class StarLine {
   final String rate;
   final int amount;
-  final charts.Color barColor;
 
   StarLine({
     required this.rate,
     required this.amount,
-    required this.barColor
+  });
+}
+
+class Rate {
+  final int amount;
+
+  Rate({
+    required this.amount,
   });
 }
 
@@ -32,7 +38,7 @@ class ChartStar extends StatelessWidget {
           data: listEarnings,
           domainFn: (StarLine series, _) => series.rate,
           measureFn: (StarLine series, _) => series.amount,
-          colorFn: (StarLine series, _) => series.barColor,
+          // colorFn: (StarLine series, _) => series.barColor,
       )
     ];
     return Container(

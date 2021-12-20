@@ -6,24 +6,36 @@ enum ItemType {
   table,
 }
 
-class Model {
-  final String id;
+class Products {
+  final String Pid;
   final String name;
-  final String description;
+  //final String description;
   final String imageUrl;
   final double price;
   final double rate;
-  final List<Color> avaliableColors;
-  final ItemType type;
+  //final List<Color> avaliableColors;
+  final List<String> type;
 
-  Model({
-    required this.id,
+  Products({
+    required this.Pid,
     required this.name,
-    required this.description,
+    //required this.description,
     required this.imageUrl,
     required this.price,
     required this.rate,
-    required this.avaliableColors,
+    //required this.avaliableColors,
     required this.type,
   });
+
+  factory Products.fromJson(Map<String, dynamic> json) {
+    return Products(
+      Pid: json['_id'],
+      name: json['name'],
+      imageUrl: json['images'],
+      price: json['price'],
+      rate: json['score'],
+      type: json['types'],
+    );
+  }
+
 }

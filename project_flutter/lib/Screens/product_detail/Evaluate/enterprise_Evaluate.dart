@@ -38,7 +38,7 @@ class _EnterpriseEvaluateScreenState extends State<EnterpriseEvaluateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Model product = dummyList.firstWhere((element) => element.id == widget.id);
+    final Products product = dummyList.firstWhere((element) => element.Pid == widget.id);
     //final Model evaluate_product = productEvaluate as Model;
 
     Icon ic1 = Icon(Icons.star_border);
